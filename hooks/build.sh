@@ -25,8 +25,8 @@ mkdir -p  ./frontend/src
 yarn stop # kill blockchain
 cd ./contracts || echo "ERROR: ./contracts/ doesn't exist?"
 yarn
-export TS_NODE_TRANSPILE_ONLY=1 && yarn hardhat compile &>../hardhat-compile.log 2>&1 &
-yarn hardhat node --fork https://eth-mainnet.alchemyapi.io/v2/"$ALCHEMY_API_KEY" --fork-block-number 12150000 --show-accounts --export-all tmp-$DEPLOYMENT_ARTIFACT >../local.node.log 2>&1 &
+export TS_NODE_TRANSPILE_ONLY=1 && yarn hardhat compile &>../hardhat-compile.log 2>&1 & # TODO: MAKE THIS WORK NON INTERACTIVELY
+yarn hardhat node --fork https://eth-mainnet.alchemyapi.io/v2/"$ALCHEMY_API_KEY" --fork-block-number 13004900 --show-accounts --export-all tmp-$DEPLOYMENT_ARTIFACT >../local.node.log 2>&1 &
 echo "Pausing until $DEPLOYMENT_ARTIFACT exists."
 while :; do
   spinnerSTART
@@ -37,5 +37,4 @@ spinnerSTOP
 node ../hooks/process-deployment.js ./tmp-$DEPLOYMENT_ARTIFACT ../frontend/src/$DEPLOYMENT_ARTIFACT
 rm -f ./tmp-$DEPLOYMENT_ARTIFACT
 cd ..
-mkdir -p
 exit 0
