@@ -1,33 +1,20 @@
 #!/bin/bash
 
-cd $(pwd)/../contracts/
+cd $(pwd)/../contracts/ || exit
 echo "✅ --- 0 ---"
-pwd
 yarn
 echo "✅ --- 1 ---"
-pwd
 yarn add hardhat
 echo "✅ --- 2 ---"
-pwd
 export TS_NODE_TRANSPILE_ONLY=1 && yarn hardhat compile
 echo "✅ --- 3 ---"
-pwd
-# mkdir -p ../frontend/src/
-echo "✅ --- 4 ---"
-pwd
 cp -r $(pwd)/artifacts/types $(pwd)/src/
+echo "✅ --- 4 ---"
+cd $(pwd)/../frontend/ || exit
 echo "✅ --- 5 ---"
-pwd
-cd $(pwd)/../frontend/
-echo "✅ --- 6 ---"
-pwd
 yarn
+echo "✅ --- 6 ---"
+next build
 echo "✅ --- 7 ---"
-pwd
-next build;
-yarn run prestart;
+yarn next start
 echo "✅ --- 8 ---"
-pwd
-# yarn next start
-echo "✅ --- 9 ---"
-pwd

@@ -2,7 +2,7 @@ import { FC } from "react";
 import {
   _renderControls
 } from "../components/common";
-import FullDeployment from "../src/full_deployment.json";
+import FullDeployment from "../src/uad-contracts-deployment.json";
 
 export const ADDRESS = {
   MANAGER: FullDeployment.contracts.UbiquityAlgorithmicDollarManager.address,
