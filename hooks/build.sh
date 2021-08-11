@@ -10,7 +10,7 @@ spinnerSTART() {
 }
 spinnerSTOP() {
   printf "\r%s\n" "$@"
-} 
+}
 if [ -f ./contracts/.env ]; then
   source ./contracts/.env
 else
@@ -21,9 +21,9 @@ rm -f ./frontend/src/uad-contracts-deployment.json
 mkdir -p  ./frontend/src
 yarn stop # kill blockchain
 cd ./contracts || echo "ERROR: ./contracts/ doesn't exist?"
-yarn 
-yarn compile
-npx hardhat node --fork https://eth-mainnet.alchemyapi.io/v2/$ALCHEMY_API_KEY --fork-block-number 12150000 --show-accounts --export-all tmp-uad-contracts-deployment.json >../local.node.log 2>&1 &
+yarn
+export TS_NODE_TRANSPILE_ONLY=1 && yarn hardhat compile
+yarn hardhat node --fork https://eth-mainnet.alchemyapi.io/v2/"$ALCHEMY_API_KEY" --fork-block-number 12150000 --show-accounts --export-all tmp-uad-contracts-deployment.json >../local.node.log 2>&1 &
 echo "Pausing until uad-contracts-deployment.json exists."
 while :; do
   spinnerSTART

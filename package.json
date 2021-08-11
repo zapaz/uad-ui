@@ -21,6 +21,7 @@
         "postdev": "run-s stop"
     },
     "dependencies": {
+        "ethers": "^5.4.4",
         "hardhat": "^2.5.0",
         "next": "^11.0.0",
         "nodemon": "^2.0.7",
@@ -44,6 +45,7 @@
         }
     },
     "devDependencies": {
-        "@types/node": "^15.0.2"
+        "@types/node": "^15.0.2",
+        "@types/react": "^17.0.17"
     }
 }
